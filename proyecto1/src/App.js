@@ -1,10 +1,12 @@
-
+import React from 'react'
+import Usuarios from './components/Usuarios';
+import Usuario from './components/Usuario';
 
 function App() {
   return (
     <div className="App">
 
-   <h1>Nuestro proyecto 1</h1>
+     <h1> Usuarios </h1>
 
     </div>
   );
