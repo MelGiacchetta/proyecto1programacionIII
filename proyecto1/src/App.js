@@ -1,13 +1,15 @@
 import React from 'react'
 import Usuarios from './components/Usuarios';
 import Usuario from './components/Usuario';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <div className="App">
-
-     <h1> Usuarios </h1>
-
+      <Header />
+      <Usuarios />
+      <Footer />
     </div>
   );
 }
