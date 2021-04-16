@@ -1,32 +1,55 @@
 import React from 'react';
 import Usuario from './Usuario'
-import datosPersonas from '../personas.json'
 import { Component } from 'react';
 
 class Usuarios extends Component{
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state ={
-
+      api: [],
+      cantidadOriginal: this.props.cantidad,
+      cantidad: this.props.cantidad,
     }
+  }
+  componentDidMount(){
+     fetch("https://randomuser.me/api/?results=" + this.state.cantidadOriginal)
+     .then(result => result.json())
+     .then(data =>{
+       this.setState({api: data.results})
+        console.log(this.state.api);
+     })
+     .catch((e) => console.log(e))
+  }
+  componentDidUpdate(prevProps, prevStates){
+    console.log()
+  }
+  adicionarTarjetas (cantidadElegida){
+    fetch("https://randomuser.me/api/?results=" + cantidadElegida)
+    .then(result => result.json())
+    .then(data =>{
+      this.state.api.push(data.results)
+      this.setState({api: this.state.api})
+      this.setState({cantidad:cantidadElegida})
+     })
+    .catch((e) => console.log(e))
   }
   render(){
 return (
-    <div className="container-fluid">
+  <React.Fragment>
+       <input type="number" id="tentacles" name="cantidad" min="0" max="100"></input>
+        <button className="adicionarTarjetas" onClick={this.adicionarTarjetas.bind(this, this.state.cantidad)}>Adicionar contactos</button>
        <div className="row">
       {
-        datosPersonas.map(function(datosPersona, idx){
+        this.state.api.map((datosPersona) => {
           return(
-            <div className="col-md-4 usuario" >
-            < Usuario key={idx} persona = {datosPersona} color = "black"/>
+            <div>
+            < Usuario key= {datosPersona.login.uuid} persona = {datosPersona} color = "black"/>
             </div>
-            
           )
         })
-
       }
       </div>
-   </div>
+      </React.Fragment>
   )
     }
  }

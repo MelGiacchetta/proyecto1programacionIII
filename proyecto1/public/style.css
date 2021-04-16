@@ -1,0 +1,23 @@
+.header{
+    background-color: #f6bdff;
+    padding: 2px;
+}
+.contactos {
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+.adicionarContacto {
+    border-radius: 8px;
+}
+.footer {
+    background-color: #f6bdff;
+    padding: 8px;
+    text-align: center;
+}
+.contenedor {
+    border-color: black;
+    background-color: rgb(255, 235, 252);
+}
+
+
