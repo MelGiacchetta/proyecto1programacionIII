@@ -12,7 +12,7 @@
  
     render(){
   return (
-     <React.Fragment>  
+     <React.Fragment className="contenedorMayor">  
     <div className="contenedor">
         <div className="infoContenedor">
             <img  width="40" height="40" src="images/avatar.jpg"/>
@@ -21,8 +21,8 @@
             <p><time> {this.props.persona.dob.date} ({this.props.persona.dob.age}) </time></p>
             <p>{this.props.persona.email}</p>
         </div>
-        <div className="verDetalle">
-            <button>Ver detalle</button>
+        <div >
+            <button className="verDetalle">Ver detalle</button>
         </div>
     </div> 
      </React.Fragment>

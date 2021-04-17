@@ -1,11 +1,12 @@
 .header{
     background-color: #f6bdff;
-    padding: 2px;
+    padding: 3px;
 }
 .contactos {
     text-align: center;
     font-weight: bold;
-    font-size: 25px;
+    font-size: 35px;
+    
 }
 .adicionarContacto {
     border-radius: 8px;
@@ -14,10 +15,43 @@
     background-color: #f6bdff;
     padding: 8px;
     text-align: center;
+    font-size: 25px;
+    font-weight: bold;
 }
-.contenedor {
+.row {
     border-color: black;
     background-color: rgb(255, 235, 252);
+ 
 }
+
+
+.adicionarTarjetas{ background-color:white;
+    font-size: 15px;
+    padding: 10px;
+  font-weight: bold;
+    
+}
+.imput{ font-size: 15px;
+    padding: 10px;
+ 
+}
+
+.verDetalle{ 
+font-size: 18px;
+padding: 5px;
+background-color:#f8c8fa;
+font-weight: bold;}
+
+.contenedor{ padding: 20px;
+border: #f6bdff 4px solid;
+border-radius: 35px ;
+margin: 25px;}
+
+.botonAdicionar {margin: 25px;
+
+    
+}
+
+
 
 

@@ -36,10 +36,17 @@ class Usuarios extends Component{
   render(){
 return (
   <React.Fragment>
-       <input type="number" id="tentacles" name="cantidad" min="0" max="100"></input>
-        <button className="adicionarTarjetas" onClick={this.adicionarTarjetas.bind(this, this.state.cantidad)}>Adicionar contactos</button>
+      
        <div className="row">
+<br></br>
+ <div className="botonAdicionar">
+       <input className="imput"type="number" id="tentacles" name="cantidad" min="0" max="100"></input>
+       
+        <button className="adicionarTarjetas" onClick={this.adicionarTarjetas.bind(this, this.state.cantidad)}>Adicionar contactos</button>
+        </div>
       {
+      
+
         this.state.api.map((datosPersona) => {
           return(
             <div>
