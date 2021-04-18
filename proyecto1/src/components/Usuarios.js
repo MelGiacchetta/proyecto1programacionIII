@@ -36,14 +36,16 @@ class Usuarios extends Component{
   render(){
 return (
   <React.Fragment>
-      
-       <div className="row">
-<br></br>
- <div className="botonAdicionar">
+    <div className="contenedorBotonAdicionar">
+      <div className="botonAdicionar">
        <input className="imput"type="number" id="tentacles" name="cantidad" min="0" max="100"></input>
        
         <button className="adicionarTarjetas" onClick={this.adicionarTarjetas.bind(this, this.state.cantidad)}>Adicionar contactos</button>
         </div>
+        </div>
+       <div className="row">
+<br></br>
+ 
       {
       
 

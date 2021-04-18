@@ -15,7 +15,7 @@
      <React.Fragment className="contenedorMayor">  
     <div className="contenedor">
         <div className="infoContenedor">
-            <img  width="40" height="40" src="images/avatar.jpg"/>
+            <img className="imagenUsuario" width="40" height="40" src="images/avatar.jpg"/>
 
             <h3>{this.props.persona.name.title}  {this.props.persona.name.first}  {this.props.persona.name.last}</h3>
             <p><time> {this.props.persona.dob.date} ({this.props.persona.dob.age}) </time></p>

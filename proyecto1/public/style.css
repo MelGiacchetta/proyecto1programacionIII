@@ -3,6 +3,7 @@
     padding: 3px;
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
+    
 }
 .contactos {
     text-align: center;
@@ -10,7 +11,7 @@
     font-size: 35px;
     font-family: 'Raleway', sans-serif;
     
-  
+
     
 }
 .adicionarContacto {
@@ -28,19 +29,21 @@
     border-color: black;
     background-color: rgb(255, 235, 252);
     font-family: 'Raleway', sans-serif;
-    ;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 53px;
 }
 
 
 .adicionarTarjetas{ background-color:white;
     font-size: 15px;
     padding: 10px;
-  font-weight: bold;
+    font-weight: bold;
     
 }
 .imput{ font-size: 15px;
     padding: 10px;
- 
+    
 }
 
 .verDetalle{ 
@@ -54,19 +57,24 @@ font-family: 'Raleway', sans-serif;}
 border: #f6bdff 4px solid;
 border-radius: 35px ;
 margin: 25px;
-width: 27%;
+width: 70%;
 text-align: center;
 
+
 }
 
-.botonAdicionar {margin: 25px;
+.botonAdicionar {
     font-family: 'Raleway', sans-serif;
-
-    
+    background-color: rgb(255, 235, 252);
+    padding-left: 85px;
+    padding-top: 30px;
 }
 
 
+.contenedorBotonAdicionar{background-color:rgb(255, 235, 252) ;}
 
-
+.contenedorMayor{ text-align: center;
+width: 30%;
+}
 
 
