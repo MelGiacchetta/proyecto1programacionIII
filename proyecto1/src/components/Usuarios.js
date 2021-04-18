@@ -49,7 +49,7 @@ return (
 
         this.state.api.map((datosPersona) => {
           return(
-            <div>
+            <div className="hola">
             < Usuario key= {datosPersona.login.uuid} persona = {datosPersona} color = "black"/>
             </div>
           )

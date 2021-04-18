@@ -1,15 +1,21 @@
 .header{
     background-color: #f6bdff;
     padding: 3px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
 }
 .contactos {
     text-align: center;
     font-weight: bold;
     font-size: 35px;
+    font-family: 'Raleway', sans-serif;
+    
+  
     
 }
 .adicionarContacto {
     border-radius: 8px;
+    
 }
 .footer {
     background-color: #f6bdff;
@@ -21,7 +27,8 @@
 .row {
     border-color: black;
     background-color: rgb(255, 235, 252);
- 
+    font-family: 'Raleway', sans-serif;
+    ;
 }
 
 
@@ -40,17 +47,25 @@
 font-size: 18px;
 padding: 5px;
 background-color:#f8c8fa;
-font-weight: bold;}
+font-weight: bold;
+font-family: 'Raleway', sans-serif;}
 
 .contenedor{ padding: 20px;
 border: #f6bdff 4px solid;
 border-radius: 35px ;
-margin: 25px;}
+margin: 25px;
+width: 27%;
+text-align: center;
+
+}
 
 .botonAdicionar {margin: 25px;
+    font-family: 'Raleway', sans-serif;
 
     
 }
+
+
 
 
 
