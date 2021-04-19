@@ -33,6 +33,15 @@ class Usuarios extends Component{
      })
     .catch((e) => console.log(e))
   }
+  borrarContacto(idTarjeta){
+    let resultado= this.state.api.filter((api)=>{
+      return api.login.uuid !== idTarjeta
+    })
+    //TODOS LOS CONTACTOS QUE SON DISTINTOS AL QUE SELECCIONE PARRA BORRAR TE LOS DEJA, Y DESAPARECE EL SELECCIONADO
+    //Si el id no coincide con el que yo estoy borrando, los mantiene en la colección
+    console.log("Tarjeta a borrar: " + idTarjeta);
+    this.setState({api: resultado});
+  }
   render(){
 return (
   <React.Fragment>
@@ -45,14 +54,13 @@ return (
         </div>
        <div className="row">
 <br></br>
- 
       {
       
 
         this.state.api.map((datosPersona) => {
           return(
-            <div className="hola">
-            < Usuario key= {datosPersona.login.uuid} persona = {datosPersona} color = "black"/>
+            <div>
+            < Usuario key= {datosPersona.login.uuid} persona = {datosPersona} color = "black" onDelete={this.borrarContacto.bind(this)}/>
             </div>
           )
         })

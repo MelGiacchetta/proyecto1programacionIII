@@ -77,4 +77,15 @@ text-align: center;
 width: 30%;
 }
 
+.imagenUsuario {
+    border-radius: 40px;
+}
 
+.borrarContacto {
+    background-color:rgb(255, 235, 252);
+    color:red;
+    font-size: 20px;
+    border: none;
+    position: absolute;
+    margin-left: 45px;
+}
