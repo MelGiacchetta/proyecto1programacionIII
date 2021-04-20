@@ -1,23 +1,21 @@
-.header{
+.header {
     background-color: #f6bdff;
     padding: 3px;
     font-family: 'Raleway', sans-serif;
-    font-weight: bold;
-    
+    font-weight: bold;    
 }
+
 .contactos {
     text-align: center;
     font-weight: bold;
     font-size: 35px;
-    font-family: 'Raleway', sans-serif;
-    
+    font-family: 'Raleway', sans-serif;      
+}
 
-    
-}
 .adicionarContacto {
-    border-radius: 8px;
-    
+    border-radius: 8px;    
 }
+
 .footer {
     background-color: #f6bdff;
     padding: 8px;
@@ -25,6 +23,7 @@
     font-size: 25px;
     font-weight: bold;
 }
+
 .row {
     border-color: black;
     background-color: rgb(255, 235, 252);
@@ -34,33 +33,33 @@
     padding: 53px;
 }
 
-
-.adicionarTarjetas{ background-color:white;
+.adicionarTarjetas { 
+    background-color:white;
     font-size: 15px;
     padding: 10px;
-    font-weight: bold;
-    
-}
-.imput{ font-size: 15px;
-    padding: 10px;
-    
+    font-weight: bold;   
+    margin-right: 20px;
 }
 
-.verDetalle{ 
+.imput { font-size: 15px;
+    padding: 10px; 
+}
+
+.verDetalle { 
 font-size: 18px;
 padding: 5px;
 background-color:#f8c8fa;
 font-weight: bold;
-font-family: 'Raleway', sans-serif;}
+font-family: 'Raleway', sans-serif;
+}
 
-.contenedor{ padding: 20px;
+.contenedor { 
+padding: 20px;
 border: #f6bdff 4px solid;
 border-radius: 35px ;
 margin: 25px;
 width: 70%;
 text-align: center;
-
-
 }
 
 .botonAdicionar {
@@ -70,10 +69,12 @@ text-align: center;
     padding-top: 30px;
 }
 
+.contenedorBotonAdicionar{
+    background-color:rgb(255, 235, 252);
+}
 
-.contenedorBotonAdicionar{background-color:rgb(255, 235, 252) ;}
-
-.contenedorMayor{ text-align: center;
+.contenedorMayor { 
+text-align: center;
 width: 30%;
 }
 
@@ -88,4 +89,28 @@ width: 30%;
     border: none;
     position: absolute;
     margin-left: 45px;
+}
+
+.filtrarNombre {
+    background-color:white;
+    font-size: 15px;
+    padding: 10px;
+    font-weight: bold;   
+    margin-right: 20px;
+}
+
+.filtrarApellido {
+    background-color:white;
+    font-size: 15px;
+    padding: 10px;
+    font-weight: bold;   
+    margin-right: 20px;
+}
+
+.filtrarEdad {
+    background-color:white;
+    font-size: 15px;
+    padding: 10px;
+    font-weight: bold;   
+    margin-right: 20px;
 }

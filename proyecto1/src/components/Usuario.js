@@ -5,18 +5,16 @@
     constructor(props){
       super(props);
       this.state = {
-          color: this.props.color,
+          width: this.props.width,
        
           }
     }
-    // verDetalle (detalle){
-    
-    // }
+
    render(){
   return (
      <React.Fragment>  
     <div className="contenedor">
-        <div className="infoContenedor">
+        <div className="infoContenedor" >
             
             <img className="imagenUsuario" width="85" height="85" src={this.props.persona.picture.large}/>
             <button className="borrarContacto" onClick={this.props.onDelete.bind(this, this.props.persona.login.uuid)}>X</button>
@@ -25,7 +23,7 @@
             <p>{this.props.persona.email}</p>
         </div>
         <div >
-            <button className="verDetalle">Ver detalle</button>
+            <button className="verDetalle" onClick={this.props.onDetalle.bind(this, this.props.persona.login.uuid)}>Ver detalle</button>
         </div>
     </div> 
      </React.Fragment>

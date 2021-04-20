@@ -23,44 +23,96 @@ class Usuarios extends Component{
   componentDidUpdate(prevProps, prevStates){
     console.log()
   }
-  adicionarTarjetas (cantidadElegida){
-    fetch("https://randomuser.me/api/?results=" + cantidadElegida)
+  adicionarTarjetas (){
+    let resultados = document.getElementById("idInput").value
+    console.log(resultados)
+    fetch("https://randomuser.me/api/?results=" + resultados)
     .then(result => result.json())
     .then(data =>{
-      this.state.api.push(data.results)
-      this.setState({api: this.state.api})
-      this.setState({cantidad:cantidadElegida})
-     })
+      //console.log(data.results)
+      let contactos = this.state.api.concat(data.results)
+      //console.log(contactos)
+      this.setState(
+        {api: contactos}
+        )
+      //console.log(this.state.api)
     .catch((e) => console.log(e))
-  }
+  })
+}
+
   borrarContacto(idTarjeta){
+    
     let resultado= this.state.api.filter((api)=>{
-      return api.login.uuid !== idTarjeta
-    })
+    return api.login.uuid !== idTarjeta
+  })
     //TODOS LOS CONTACTOS QUE SON DISTINTOS AL QUE SELECCIONE PARRA BORRAR TE LOS DEJA, Y DESAPARECE EL SELECCIONADO
     //Si el id no coincide con el que yo estoy borrando, los mantiene en la colección
     console.log("Tarjeta a borrar: " + idTarjeta);
     this.setState({api: resultado});
   }
-  render(){
+
+  verDetalle(idTarjeta){
+    let resultado= this.state.api.filter((api)=>{
+    return api.login.uuid === idTarjeta
+  })
+  this.setState({api: resultado});
+
+}
+
+filtrarNombres(){
+  let nombres = document.getElementById("idInputNombres").value
+  let resultado= this.state.api.filter((api)=>{
+    return api.name.first === nombres 
+  })
+  this.setState({api: resultado});
+  }
+
+filtrarApellidos(){
+  let apellidos = document.getElementById("idInputApellidos").value
+  let resultado= this.state.api.filter((api)=>{
+    return api.name.last === apellidos 
+  })
+  this.setState({api: resultado});
+}
+
+filtrarEdades(){
+  let edades = document.getElementById("idInputEdades").value
+  console.log(edades)
+  let resultado= this.state.api.filter((api)=>{
+    return api.dob.age === edades
+  })
+  this.setState({api: resultado});
+  console.log(resultado)
+
+}
+
+render(){
 return (
   <React.Fragment>
     <div className="contenedorBotonAdicionar">
       <div className="botonAdicionar">
-       <input className="imput"type="number" id="tentacles" name="cantidad" min="0" max="100"></input>
-       
-        <button className="adicionarTarjetas" onClick={this.adicionarTarjetas.bind(this, this.state.cantidad)}>Adicionar contactos</button>
+
+       <input className="input" type="number" id="idInput" name="cantidad" min="0" max="100"></input>
+        <button className="adicionarTarjetas" onClick={this.adicionarTarjetas.bind(this)}>Adicionar contactos</button>
+        
+        <input className="input" id="idInputNombres" name="cantidad" ></input>
+        <button className="filtrarNombres" onClick={this.filtrarNombres.bind(this)}>Filtrar por nombre</button>
+        
+        <input className="input" id="idInputApellidos" name="cantidad" ></input>
+        <button className="filtrarApellidos" onClick={this.filtrarApellidos.bind(this)}>Filtrar por apellido</button>
+
+        <input className="input" type="number" id="idInputEdades" name="cantidad"></input>
+        <button className="filtrarEdades" onClick={this.filtrarEdades.bind(this)}>Filtrar por edad</button>
+        
         </div>
         </div>
        <div className="row">
 <br></br>
       {
-      
-
         this.state.api.map((datosPersona) => {
           return(
             <div>
-            < Usuario key= {datosPersona.login.uuid} persona = {datosPersona} color = "black" onDelete={this.borrarContacto.bind(this)}/>
+            < Usuario key= {datosPersona.login.uuid} persona = {datosPersona} onDelete={this.borrarContacto.bind(this)} onDetalle={this.verDetalle.bind(this)} />
             </div>
           )
         })
