@@ -91,7 +91,7 @@ width: 30%;
     margin-left: 45px;
 }
 
-.filtrarNombre {
+.filtrarNombres {
     background-color:white;
     font-size: 15px;
     padding: 10px;
@@ -99,7 +99,7 @@ width: 30%;
     margin-right: 20px;
 }
 
-.filtrarApellido {
+.filtrarApellidos {
     background-color:white;
     font-size: 15px;
     padding: 10px;
@@ -107,10 +107,11 @@ width: 30%;
     margin-right: 20px;
 }
 
-.filtrarEdad {
+.filtrarEdades {
     background-color:white;
     font-size: 15px;
     padding: 10px;
     font-weight: bold;   
     margin-right: 20px;
 }
+
