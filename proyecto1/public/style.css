@@ -122,14 +122,13 @@ padding-right: 250px;
 border: #f6bdff 4px solid;
 border-radius: 35px ;
 margin: 25px;
-text-align: center;
-
-   
-    
+text-align: center;   
 }
+
 .hidden{
     display: none;
 }
+
 .notHidden{
     display: block;
 }

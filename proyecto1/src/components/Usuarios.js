@@ -64,8 +64,6 @@ class Usuarios extends Component{
   document.getElementById("botonVerDetalle").className="hidden"
   document.getElementById("infoContenedor").className="contenedorNuevo"
   this.setState({api: resultado});
-
-
 }
 
 filtrarNombres(){
@@ -78,7 +76,7 @@ filtrarNombres(){
   
 
 filtrarApellidos(){
-  let apellidos = document.getElementById("idInputApellidos").value
+  let apellidos = document.getElementById("idInputApellidos").value.toLowerCase()
   let resultado= this.state.api.filter((api)=>{
     return api.name.last.toLowerCase().includes(apellidos)
   });
@@ -92,8 +90,6 @@ filtrarEdades(){
     return api.dob.age == edades
   })
   this.setState({api: resultado});
-
-
 }
 
 render(){
