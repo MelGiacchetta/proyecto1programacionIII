@@ -52,26 +52,36 @@ class Usuarios extends Component{
   }
 
   verDetalle(idTarjeta){
-    let resultado= this.state.api.filter((api)=>{
-    return api.login.uuid === idTarjeta
-  })
+    let resultado = this.state.api.filter((api)=>{
+    return (api.login.uuid === idTarjeta)
+  });
+  document.getElementById("hidden1").className="notHidden"
+  document.getElementById("hidden2").className="notHidden"
+  document.getElementById("hidden3").className="notHidden"
+  document.getElementById("hidden4").className="notHidden"
+  document.getElementById("hidden5").className="notHidden"
+  document.getElementById("hidden6").className="notHidden"
+  document.getElementById("botonVerDetalle").className="hidden"
+  document.getElementById("infoContenedor").className="contenedorNuevo"
   this.setState({api: resultado});
+
 
 }
 
 filtrarNombres(){
-  let nombres = document.getElementById("idInputNombres").value
-  let resultado= this.state.api.filter((api)=>{
-    return api.name.first === nombres 
-  })
-  this.setState({api: resultado});
+  let nombres = document.getElementById("idInputNombres").value.toLowerCase()
+  let resultado = this.state.api.filter((api)=>{
+    return api.name.first.toLowerCase().includes(nombres)
+  });
+    this.setState({api: resultado});
   }
+  
 
 filtrarApellidos(){
   let apellidos = document.getElementById("idInputApellidos").value
   let resultado= this.state.api.filter((api)=>{
-    return api.name.last === apellidos 
-  })
+    return api.name.last.toLowerCase().includes(apellidos)
+  });
   this.setState({api: resultado});
 }
 
@@ -79,10 +89,10 @@ filtrarEdades(){
   let edades = document.getElementById("idInputEdades").value
   console.log(edades)
   let resultado= this.state.api.filter((api)=>{
-    return api.dob.age === edades
+    return api.dob.age == edades
   })
   this.setState({api: resultado});
-  console.log(resultado)
+
 
 }
 

@@ -115,3 +115,24 @@ width: 30%;
     margin-right: 20px;
 }
 
+.contenedorNuevo{
+width: 100%;
+padding-left: 250px;
+padding-right: 250px;
+border: #f6bdff 4px solid;
+border-radius: 35px ;
+margin: 25px;
+text-align: center;
+
+   
+    
+}
+.hidden{
+    display: none;
+}
+.notHidden{
+    display: block;
+}
+
+
+
