@@ -21,7 +21,7 @@ class Usuarios extends Component{
      .catch((e) => console.log(e))
   }
   componentDidUpdate(prevProps, prevStates){
-    console.log()
+    console.log("Se modifico el componente")
   }
   adicionarTarjetas (){
     let resultados = document.getElementById("idInput").value
@@ -36,8 +36,8 @@ class Usuarios extends Component{
         {api: contactos}
         )
       //console.log(this.state.api)
-    .catch((e) => console.log(e))
   })
+  .catch((e) => console.log(e))
 }
 
   borrarContacto(idTarjeta){
@@ -50,21 +50,6 @@ class Usuarios extends Component{
     console.log("Tarjeta a borrar: " + idTarjeta);
     this.setState({api: resultado});
   }
-
-  verDetalle(idTarjeta){
-    let resultado = this.state.api.filter((api)=>{
-    return (api.login.uuid === idTarjeta)
-  });
-  document.getElementById("hidden1").className="notHidden"
-  document.getElementById("hidden2").className="notHidden"
-  document.getElementById("hidden3").className="notHidden"
-  document.getElementById("hidden4").className="notHidden"
-  document.getElementById("hidden5").className="notHidden"
-  document.getElementById("hidden6").className="notHidden"
-  document.getElementById("botonVerDetalle").className="hidden"
-  document.getElementById("infoContenedor").className="contenedorNuevo"
-  this.setState({api: resultado});
-}
 
 filtrarNombres(){
   let nombres = document.getElementById("idInputNombres").value.toLowerCase()
@@ -92,6 +77,42 @@ filtrarEdades(){
   this.setState({api: resultado});
 }
 
+ordenar(){ 
+let nombre = document.getElementById("nombre")
+let apellido = document.getElementById("apellido")
+let edad = document.getElementById("edad")
+let chequeado 
+
+if (nombre.checked === true){
+   chequeado = this.state.api.name.first
+   console.log(chequeado)
+}
+
+else if (apellido.checked === true){
+   chequeado = this.state.api.name.last
+}
+
+else if (edad.checked === true){
+    chequeado = this.state.api.dob.age
+}
+
+let ascendente = this.state.api.sort((a, b)=> {
+      if (a.chequeado > b.chequeado){
+             return 1;
+        }
+
+      else if (a.chequeado < b.chequeado){
+            return -1;
+        }
+
+      else {
+            return 0;
+        }
+        
+ })
+ this.setState({api: ascendente})
+}
+
 render(){
 return (
   <React.Fragment>
@@ -109,7 +130,13 @@ return (
 
         <input className="input" type="number" id="idInputEdades" name="cantidad"></input>
         <button className="filtrarEdades" onClick={this.filtrarEdades.bind(this)}>Filtrar por edad</button>
-        
+ 
+        <select className="ordenar" onChange= {this.ordenar.bind(this)}>
+            <option disabled selected>Ordenar</option>
+            <option value="A" >Ascendente por nombre</option>
+            <option value="D">Descendente por nombre</option>
+        </select>
+
         </div>
         </div>
        <div className="row">
@@ -118,7 +145,7 @@ return (
         this.state.api.map((datosPersona) => {
           return(
             <div>
-            < Usuario key= {datosPersona.login.uuid} persona = {datosPersona} onDelete={this.borrarContacto.bind(this)} onDetalle={this.verDetalle.bind(this)} />
+            < Usuario key= {datosPersona.login.uuid} persona = {datosPersona} onDelete={this.borrarContacto.bind(this)}  />
             </div>
           )
         })
