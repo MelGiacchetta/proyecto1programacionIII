@@ -83,15 +83,15 @@ filtrarEdades(){
 ordenar(event){ 
 let valorInput = event.target.value
 
-let nombres = this.state.api.map ((api)=> {
+let nombres = this.state.api.map ((api)=>{
   return api.name.first 
 })
 
-let apellidos = this.state.api.map ((api)=> {
+let apellidos = this.state.api.map ((api)=>{
   return api.name.last 
 })
 
-let edades = this.state.api.map ((api)=> {
+let edades = this.state.api.map ((api)=>{
   return api.dob.age 
 })
 
@@ -108,16 +108,16 @@ let valor
  }
  console.log(valor)
 
-let ascendente = this.state.api.sort( (a, b)=> {
-      if (a.valor > b.valor){
+let ascendente = this.state.api.sort((a, b)=>{
+      if(a.valor > b.valor){
              return 1;
         }
 
-      if (a.valor < b.valor){
+      if(a.valor < b.valor){
             return -1;
         }
         
-            return 0;  
+      return 0;  
  })
  console.log(ascendente)
  this.setState({api: ascendente}) 
