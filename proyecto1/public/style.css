@@ -140,4 +140,19 @@ text-align: center;
     font-size: 13px;
 }
 
+.floatLeft{
+    float: left;
+    overflow: hidden;
+    position: relative;
+    right: 33%;
+    
+}
+
+.floatRight {
+    float: right;
+    overflow: hidden;
+    position: relative;
+    left: 33%;
+}
+
 

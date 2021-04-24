@@ -10,7 +10,7 @@ class Usuarios extends Component{
       cantidadOriginal: this.props.cantidad,
       cantidad: this.props.cantidad,
       value: "" ,
-      nombre: "",
+
     }
   }
   componentDidMount(){
@@ -103,9 +103,10 @@ let valor
  else if(valorInput === "Aa" ) {
    valor = apellidos
  }
- else{
+ else if (valorInput === "Ae"){
    valor = edades
  }
+ 
  console.log(valor)
 
 let ascendente = this.state.api.sort((a, b)=>{
@@ -141,7 +142,7 @@ return (
         <input className="input" type="number" id="idInputEdades" name="cantidad" onChange={(event)=> this.setState({ value: event.target.value})}></input>
         <button className="filtrarEdades" onClick={this.filtrarEdades.bind(this)}>Filtrar por edad</button>
  
-        <select className="ordenar" onChange= {this.ordenar.bind(this)} >
+        <select className="ordenar" onChange = {this.ordenar.bind(this)} >
             <option disabled selected>Ordenar</option>
             <option value="An" onClick={(event)=> this.setState({ value: event.target.value})}>Ascendente por nombre</option>
             <option value="Dn" onClick={(event)=> this.setState({ value: event.target.value})}>Descendente por nombre</option>

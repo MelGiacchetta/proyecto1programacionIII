@@ -7,12 +7,15 @@
       this.state = {
         width: this.props.width,
         hidden: true,
-          }
+        floatLeft: true,
+        }
     }
    render(){
   return (
      <React.Fragment>  
+ <div className={this.state.floatLeft ? "floatLeft" : "floatRight"}>
     <div id="infoContenedor" className="contenedor">
+       
         <div  className="infoContenedor" >
             
             <img className="imagenUsuario" width="85" height="85" src={this.props.persona.picture.large}/>
@@ -22,6 +25,7 @@
             <p className="email">Email: {this.props.persona.email}</p>
         <div className= { 
                 this.state.hidden ? "hidden" : "notHidden"
+                
             //  en el primero dice lo que tiene que ser verdad, y en el segundo lo falso
         }>
             <p>Dirección: {this.props.persona.location.street.name} {this.props.persona.location.street.number}</p>
@@ -31,11 +35,24 @@
             <p>Fecha registro: {this.props.persona.registered.date}</p>
             <p>Celular: {this.props.persona.phone}</p>
         </div>
+
         </div>
-        <div >
-            <button className="verDetalle" id="botonVerDetalle" onClick={()=> this.setState({hidden:false})}>Ver detalle</button>
+     
+        <div>
+            <button className="verDetalle" id="botonVerDetalle" onClick={()=> this.setState({hidden: false})}>Ver detalle</button>
         </div>
+     
+    <br></br>
+    <div>
+        <button onClick={()=> this.setState({floatLeft: true})}> ← </button>
+        <button> ↑ </button>
+        <button> ↓ </button>
+        <button onClick={()=> this.setState({floatLeft: false})}> → </button>
+    </div>
+
+       
     </div> 
+</div>
      </React.Fragment>
    )
   }
