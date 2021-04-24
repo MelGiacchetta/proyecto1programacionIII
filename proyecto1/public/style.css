@@ -133,5 +133,11 @@ text-align: center;
     display: block;
 }
 
+.ordenar {
+    background-color:white;
+    padding: 10x;
+    font-weight: bold; 
+    font-size: 13px;
+}
 
 

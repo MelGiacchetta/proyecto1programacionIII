@@ -9,6 +9,8 @@ class Usuarios extends Component{
       api: [],
       cantidadOriginal: this.props.cantidad,
       cantidad: this.props.cantidad,
+      value: "" ,
+      nombre: "",
     }
   }
   componentDidMount(){
@@ -24,7 +26,7 @@ class Usuarios extends Component{
     console.log("Se modifico el componente")
   }
   adicionarTarjetas (){
-    let resultados = document.getElementById("idInput").value
+    let resultados = this.value
     console.log(resultados)
     fetch("https://randomuser.me/api/?results=" + resultados)
     .then(result => result.json())
@@ -52,16 +54,17 @@ class Usuarios extends Component{
   }
 
 filtrarNombres(){
-  let nombres = document.getElementById("idInputNombres").value.toLowerCase()
+  let nombres = this.state.value.toLowerCase()
   let resultado = this.state.api.filter((api)=>{
     return api.name.first.toLowerCase().includes(nombres)
   });
+  console.log(resultado)
     this.setState({api: resultado});
   }
   
 
 filtrarApellidos(){
-  let apellidos = document.getElementById("idInputApellidos").value.toLowerCase()
+  let apellidos = this.state.value.toLowerCase()
   let resultado= this.state.api.filter((api)=>{
     return api.name.last.toLowerCase().includes(apellidos)
   });
@@ -69,7 +72,7 @@ filtrarApellidos(){
 }
 
 filtrarEdades(){
-  let edades = document.getElementById("idInputEdades").value
+  let edades = this.state.value
   console.log(edades)
   let resultado= this.state.api.filter((api)=>{
     return api.dob.age == edades
@@ -77,40 +80,47 @@ filtrarEdades(){
   this.setState({api: resultado});
 }
 
-ordenar(){ 
-let nombre = document.getElementById("nombre")
-let apellido = document.getElementById("apellido")
-let edad = document.getElementById("edad")
-let chequeado 
+ordenar(event){ 
+let valorInput = event.target.value
 
-if (nombre.checked === true){
-   chequeado = this.state.api.name.first
-   console.log(chequeado)
-}
+let nombres = this.state.api.map ((api)=> {
+  return api.name.first 
+})
 
-else if (apellido.checked === true){
-   chequeado = this.state.api.name.last
-}
+let apellidos = this.state.api.map ((api)=> {
+  return api.name.last 
+})
 
-else if (edad.checked === true){
-    chequeado = this.state.api.dob.age
-}
+let edades = this.state.api.map ((api)=> {
+  return api.dob.age 
+})
 
-let ascendente = this.state.api.sort((a, b)=> {
-      if (a.chequeado > b.chequeado){
+let valor 
+
+ if (valorInput === "An" ) {
+   valor = nombres
+ }
+ else if(valorInput === "Aa" ) {
+   valor = apellidos
+ }
+ else{
+   valor = edades
+ }
+ console.log(valor)
+
+let ascendente = this.state.api.sort( (a, b)=> {
+      if (a.valor > b.valor){
              return 1;
         }
 
-      else if (a.chequeado < b.chequeado){
+      if (a.valor < b.valor){
             return -1;
         }
-
-      else {
-            return 0;
-        }
         
+            return 0;  
  })
- this.setState({api: ascendente})
+ console.log(ascendente)
+ this.setState({api: ascendente}) 
 }
 
 render(){
@@ -119,22 +129,26 @@ return (
     <div className="contenedorBotonAdicionar">
       <div className="botonAdicionar">
 
-       <input className="input" type="number" id="idInput" name="cantidad" min="0" max="100"></input>
+       <input className="input" type="number" id="idInput" name="cantidad" min="0" max="100" onChange={(event)=> this.setState({ value: event.target.value})}></input>
         <button className="adicionarTarjetas" onClick={this.adicionarTarjetas.bind(this)}>Adicionar contactos</button>
         
-        <input className="input" id="idInputNombres" name="cantidad" ></input>
+        <input className="input" id="idInputNombres" name="cantidad" onChange={(event)=> this.setState({ value: event.target.value})}></input>
         <button className="filtrarNombres" onClick={this.filtrarNombres.bind(this)}>Filtrar por nombre</button>
         
-        <input className="input" id="idInputApellidos" name="cantidad" ></input>
+        <input className="input" id="idInputApellidos" name="cantidad" onChange={(event)=> this.setState({ value: event.target.value})} ></input>
         <button className="filtrarApellidos" onClick={this.filtrarApellidos.bind(this)}>Filtrar por apellido</button>
 
-        <input className="input" type="number" id="idInputEdades" name="cantidad"></input>
+        <input className="input" type="number" id="idInputEdades" name="cantidad" onChange={(event)=> this.setState({ value: event.target.value})}></input>
         <button className="filtrarEdades" onClick={this.filtrarEdades.bind(this)}>Filtrar por edad</button>
  
-        <select className="ordenar" onChange= {this.ordenar.bind(this)}>
+        <select className="ordenar" onChange= {this.ordenar.bind(this)} >
             <option disabled selected>Ordenar</option>
-            <option value="A" >Ascendente por nombre</option>
-            <option value="D">Descendente por nombre</option>
+            <option value="An" onClick={(event)=> this.setState({ value: event.target.value})}>Ascendente por nombre</option>
+            <option value="Dn" onClick={(event)=> this.setState({ value: event.target.value})}>Descendente por nombre</option>
+            <option value="Aa" onClick={(event)=> this.setState({ value: event.target.value})}>Ascendente por apellido</option>
+            <option value="Da" onClick={(event)=> this.setState({ value: event.target.value})}>Descendente por apellido</option>
+            <option value="Ae" onClick={(event)=> this.setState({ value: event.target.value})}>Ascendente por edad</option>
+            <option value="De" onClick={(event)=> this.setState({ value: event.target.value})}>Descendente por edad</option>
         </select>
 
         </div>
