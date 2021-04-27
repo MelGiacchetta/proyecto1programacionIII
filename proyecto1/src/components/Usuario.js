@@ -1,19 +1,18 @@
- import React from 'react';
- import { Component } from 'react';
+import React from 'react';
+import { Component } from 'react';
 
-  class Usuario extends Component{
+class Usuario extends Component{
     constructor(props){
       super(props);
       this.state = {
         width: this.props.width,
         hidden: true,
-        floatLeft: true,
         }
-    }
-   render(){
-  return (
+}
+    
+render(){
+  return(
      <React.Fragment>  
- <div className={this.state.floatLeft ? "floatLeft" : "floatRight"}>
     <div id="infoContenedor" className="contenedor">
        
         <div  className="infoContenedor" >
@@ -44,17 +43,16 @@
      
     <br></br>
     <div>
-        <button onClick={()=> this.setState({floatLeft: true})}> ← </button>
+        <button onClick={this.props.onMove.bind(this, this.props.persona.login.uuid)}> ← </button>
         <button> ↑ </button>
         <button> ↓ </button>
-        <button onClick={()=> this.setState({floatLeft: false})}> → </button>
+        <button onClick={this.props.onMove.bind(this, this.props.persona.login.uuid)}> → </button>
     </div>
 
        
     </div> 
-</div>
      </React.Fragment>
    )
-  }
-  }
+}
+}
  export default Usuario;

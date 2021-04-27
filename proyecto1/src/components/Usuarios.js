@@ -5,15 +5,14 @@ import { Component } from 'react';
 class Usuarios extends Component{
   constructor(props){
     super(props);
-    this.state ={
+    this.state = {
       api: [],
       cantidadOriginal: this.props.cantidad,
       cantidad: this.props.cantidad,
       value: "" ,
-
     }
   }
-  componentDidMount(){
+componentDidMount(){
      fetch("https://randomuser.me/api/?results=" + this.state.cantidadOriginal)
      .then(result => result.json())
      .then(data =>{
@@ -21,11 +20,13 @@ class Usuarios extends Component{
         console.log(this.state.api);
      })
      .catch((e) => console.log(e))
-  }
-  componentDidUpdate(prevProps, prevStates){
+}
+
+componentDidUpdate(prevProps, prevStates){
     console.log("Se modifico el componente")
-  }
-  adicionarTarjetas (){
+}
+
+adicionarTarjetas (){
     let resultados = this.value
     console.log(resultados)
     fetch("https://randomuser.me/api/?results=" + resultados)
@@ -42,16 +43,16 @@ class Usuarios extends Component{
   .catch((e) => console.log(e))
 }
 
-  borrarContacto(idTarjeta){
+borrarContacto(idTarjeta){
     
-    let resultado= this.state.api.filter((api)=>{
+    let resultado = this.state.api.filter((api)=>{
     return api.login.uuid !== idTarjeta
   })
     //TODOS LOS CONTACTOS QUE SON DISTINTOS AL QUE SELECCIONE PARRA BORRAR TE LOS DEJA, Y DESAPARECE EL SELECCIONADO
     //Si el id no coincide con el que yo estoy borrando, los mantiene en la colección
     console.log("Tarjeta a borrar: " + idTarjeta);
     this.setState({api: resultado});
-  }
+}
 
 filtrarNombres(){
   let nombres = this.state.value.toLowerCase()
@@ -60,8 +61,7 @@ filtrarNombres(){
   });
   console.log(resultado)
     this.setState({api: resultado});
-  }
-  
+} 
 
 filtrarApellidos(){
   let apellidos = this.state.value.toLowerCase()
@@ -81,48 +81,102 @@ filtrarEdades(){
 }
 
 ordenar(event){ 
-let valorInput = event.target.value
-
-let nombres = this.state.api.map ((api)=>{
-  return api.name.first 
-})
-
-let apellidos = this.state.api.map ((api)=>{
-  return api.name.last 
-})
-
-let edades = this.state.api.map ((api)=>{
-  return api.dob.age 
-})
-
-let valor 
-
- if (valorInput === "An" ) {
-   valor = nombres
- }
- else if(valorInput === "Aa" ) {
-   valor = apellidos
- }
- else if (valorInput === "Ae"){
-   valor = edades
- }
- 
- console.log(valor)
-
-let ascendente = this.state.api.sort((a, b)=>{
-      if(a.valor > b.valor){
-             return 1;
-        }
-
-      if(a.valor < b.valor){
-            return -1;
-        }
-        
-      return 0;  
- })
- console.log(ascendente)
- this.setState({api: ascendente}) 
+  let valorInput = event.target.value
+  console.log(valorInput)
+  let ordenar 
+  if (valorInput === "An" ){
+        ordenar = this.state.api.sort((a,b)=>{
+            if(a.name.first > b.name.first) {
+                return 1;
+            } 
+            else if(a.name.first < b.name.first){
+                return -1;
+            }
+            else{
+                return 0;
+            }
+        })  
+  }
+  else if (valorInput === "Aa" ){
+        ordenar = this.state.api.sort((a,b)=>{
+            if(a.name.last > b.name.last) {
+                return 1;
+            } 
+            else if(a.name.last < b.name.last){
+                return -1;
+            }
+            else{
+                return 0;
+            }
+        })
+  }
+  else if (valorInput === "Ae"){
+        ordenar = this.state.api.sort((a,b)=>{
+            if(a.dob.age > b.dob.age) {
+                return 1;
+            } 
+            else if(a.dob.age < b.dob.age){
+                return -1;
+            }
+            else{
+                return 0;
+            }
+        })
+  }
+  else if (valorInput === "Dn" ){
+        ordenar = this.state.api.sort((a,b)=>{
+            if(a.name.first < b.name.first) {
+                return 1;
+            } 
+            else if (a.name.first > b.name.first){
+                return -1;
+            }
+            else{
+                return 0;
+            }
+        })
+  }
+  else if (valorInput === "Da" ){
+        ordenar = this.state.api.sort((a,b)=>{
+            if(a.name.last < b.name.last) {
+                return 1;
+            } 
+            else if (a.name.last > b.name.last){
+                return -1;
+            }
+            else{
+                return 0;
+            }
+        })
+  }
+  else if (valorInput === "De"){
+        ordenar = this.state.api.sort((a,b)=>{
+            if(a.dob.age > b.dob.age) {
+                return -1;
+            } 
+            else if(a.dob.age < b.dob.age){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        })
+  }
+this.setState({api: ordenar}) 
 }
+
+mover = (posicion) =>{
+  let lugar = this.state.api.findIndex((api) => {
+      return api.login.uuid === posicion;
+  })
+
+  let final = this.state.api.splice(lugar, 1)
+  console.log(final)
+  this.setState({
+      api: this.state.api,
+  })
+}
+
 
 render(){
 return (
@@ -160,7 +214,7 @@ return (
         this.state.api.map((datosPersona) => {
           return(
             <div>
-            < Usuario key= {datosPersona.login.uuid} persona = {datosPersona} onDelete={this.borrarContacto.bind(this)}  />
+            < Usuario key= {datosPersona.login.uuid} persona = {datosPersona} onDelete={this.borrarContacto.bind(this)} onMove={this.mover.bind(datosPersona.login.uuid)}/>
             </div>
           )
         })
