@@ -27,7 +27,7 @@ componentDidUpdate(prevProps, prevStates){
 }
 
 adicionarTarjetas (){
-    let resultados = this.value
+    let resultados = this.state.value
     console.log(resultados)
     fetch("https://randomuser.me/api/?results=" + resultados)
     .then(result => result.json())
@@ -165,19 +165,6 @@ ordenar(event){
 this.setState({api: ordenar}) 
 }
 
-mover = (posicion) =>{
-  let lugar = this.state.api.findIndex((api) => {
-      return api.login.uuid === posicion;
-  })
-
-  let final = this.state.api.splice(lugar, 1)
-  console.log(final)
-  this.setState({
-      api: this.state.api,
-  })
-}
-
-
 render(){
 return (
   <React.Fragment>
@@ -205,22 +192,22 @@ return (
             <option value="Ae" onClick={(event)=> this.setState({ value: event.target.value})}>Ascendente por edad</option>
             <option value="De" onClick={(event)=> this.setState({ value: event.target.value})}>Descendente por edad</option>
         </select>
-
         </div>
         </div>
-       <div className="row">
+       <div className="row uk-grid-small uk-child-width-1-2 uk-child-width-1-4@s" uk-sortable="handle: .uk-card" uk-grid>
 <br></br>
       {
         this.state.api.map((datosPersona) => {
           return(
             <div>
-            < Usuario key= {datosPersona.login.uuid} persona = {datosPersona} onDelete={this.borrarContacto.bind(this)} onMove={this.mover.bind(datosPersona.login.uuid)}/>
+            < Usuario key= {datosPersona.login.uuid} persona = {datosPersona} onDelete={this.borrarContacto.bind(this)}/>
             </div>
           )
         })
       }
       </div>
       </React.Fragment>
+      
   )
     }
  }
