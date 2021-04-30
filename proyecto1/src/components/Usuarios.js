@@ -35,11 +35,9 @@ adicionarTarjetas (){
 
 borrarContacto(idTarjeta){
     let resultado = this.state.api.filter((api)=>{
-    console.log(idTarjeta)
     return api.login.uuid !== idTarjeta
     
   })
-    console.log("Tarjeta a borrar: " + idTarjeta);
     this.setState({api: resultado});
 }
 
@@ -48,7 +46,6 @@ filtrarNombres(){
   let resultado = this.state.api.filter((api)=>{
     return api.name.first.toLowerCase().includes(nombres)
   });
-  console.log(resultado)
     this.setState({api: resultado});
 }
 
@@ -62,7 +59,6 @@ filtrarApellidos(){
 
 filtrarEdades(){
   let edades = this.state.value
-  console.log(edades)
   let resultado= this.state.api.filter((api)=>{
     return api.dob.age == edades
   })
@@ -71,7 +67,6 @@ filtrarEdades(){
 
 ordenar(event){ 
   let valorInput = event.target.value
-  console.log(valorInput)
   let ordenar 
   if (valorInput === "An" ){
         ordenar = this.state.api.sort((a,b)=>{
