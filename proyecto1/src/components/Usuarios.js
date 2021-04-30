@@ -8,7 +8,6 @@ class Usuarios extends Component{
     this.state = {
       api: [],
       cantidadOriginal: this.props.cantidad,
-      cantidad: this.props.cantidad,
       value: "" ,
     }
   }
@@ -17,18 +16,12 @@ componentDidMount(){
      .then(result => result.json())
      .then(data =>{
        this.setState({api: data.results})
-        console.log(this.state.api);
      })
      .catch((e) => console.log(e))
 }
 
-componentDidUpdate(prevProps, prevStates){
-    console.log("Se modifico el componente")
-}
-
 adicionarTarjetas (){
     let resultados = this.state.value
-    console.log(resultados)
     fetch("https://randomuser.me/api/?results=" + resultados)
     .then(result => result.json())
     .then(data =>{
@@ -42,7 +35,9 @@ adicionarTarjetas (){
 
 borrarContacto(idTarjeta){
     let resultado = this.state.api.filter((api)=>{
+    console.log(idTarjeta)
     return api.login.uuid !== idTarjeta
+    
   })
     console.log("Tarjeta a borrar: " + idTarjeta);
     this.setState({api: resultado});
@@ -163,7 +158,8 @@ return (
   <React.Fragment>
     <div className="contenedorBotonAdicionar">
       <div className="botonAdicionar">
-       <input className="input" type="number" id="idInput" name="cantidad" min="0" max="100" onChange={(event)=> this.setState({value: event.target.value})}></input>
+
+        <input className="input" type="number" id="idInput" name="cantidad" min="0" max="100" onChange={(event)=> this.setState({ value: event.target.value})}></input>
         <button className="adicionarTarjetas" onClick={this.adicionarTarjetas.bind(this)}>Adicionar contactos</button>
 
         <input className="input" id="idInputNombres" name="cantidad" onChange={(event)=> this.setState({ value: event.target.value})}></input>

@@ -5,7 +5,6 @@ class Usuario extends Component{
     constructor(props){
       super(props);
       this.state = {
-        width: this.props.width,
         hidden: true,
         mover: false,
         }
