@@ -59,7 +59,7 @@ filtrarApellidos(){
 
 filtrarEdades(){
   let edades = this.state.value
-  let resultado= this.state.api.filter((api)=>{
+  let resultado = this.state.api.filter((api)=>{
     return api.dob.age == edades
   })
   this.setState({api: resultado});

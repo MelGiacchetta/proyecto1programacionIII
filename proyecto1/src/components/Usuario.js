@@ -7,6 +7,7 @@ class Usuario extends Component{
       this.state = {
         hidden: true,
         mover: false,
+        detalleHidden: false, 
         }
 }
 render(){
@@ -37,12 +38,18 @@ render(){
                 <p>CP: {this.props.persona.location.postcode}</p>
                 <p>Fecha registro: {this.props.persona.registered.date}</p>
                 <p>Celular: {this.props.persona.phone}</p>
+                <button className="verDetalle" onClick={()=> this.setState({hidden:true, detalleHidden:false})}> Ver menos </button>
             </div>
 
         </div>
      
-        <div>
-            <button className="verDetalle" id="botonVerDetalle" onClick={()=> this.setState({hidden: false})}>Ver detalle</button>
+        <div className= { 
+                
+                this.state.detalleHidden ? "detalleHidden" : "detalleNotHidden"
+                
+            //  en el primero dice lo que tiene que ser verdad, y en el segundo lo falso
+        }>
+            <button className="verDetalle" id="botonVerDetalle" onClick={()=> this.setState({hidden: false, detalleHidden: true})}>Ver detalle</button>
         </div>
      </div>
     <br></br> 
