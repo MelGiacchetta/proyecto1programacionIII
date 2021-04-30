@@ -38,7 +38,7 @@ render(){
                 <p>CP: {this.props.persona.location.postcode}</p>
                 <p>Fecha registro: {this.props.persona.registered.date}</p>
                 <p>Celular: {this.props.persona.phone}</p>
-                <button className="verDetalle" onClick={()=> this.setState({hidden:true, detalleHidden:false})}> Ver menos </button>
+                <button className="verDetalle" onClick={()=> this.setState({hidden:true, detalleHidden: false})}> Ver menos </button>
             </div>
 
         </div>
