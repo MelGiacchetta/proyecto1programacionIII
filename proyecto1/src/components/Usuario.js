@@ -10,7 +10,6 @@ class Usuario extends Component{
         mover: false,
         }
 }
-    
 render(){
   return(
      <React.Fragment>

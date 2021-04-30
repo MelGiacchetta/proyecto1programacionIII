@@ -32,24 +32,18 @@ adicionarTarjetas (){
     fetch("https://randomuser.me/api/?results=" + resultados)
     .then(result => result.json())
     .then(data =>{
-      //console.log(data.results)
       let contactos = this.state.api.concat(data.results)
-      //console.log(contactos)
       this.setState(
         {api: contactos}
         )
-      //console.log(this.state.api)
   })
   .catch((e) => console.log(e))
 }
 
 borrarContacto(idTarjeta){
-    
     let resultado = this.state.api.filter((api)=>{
     return api.login.uuid !== idTarjeta
   })
-    //TODOS LOS CONTACTOS QUE SON DISTINTOS AL QUE SELECCIONE PARRA BORRAR TE LOS DEJA, Y DESAPARECE EL SELECCIONADO
-    //Si el id no coincide con el que yo estoy borrando, los mantiene en la colección
     console.log("Tarjeta a borrar: " + idTarjeta);
     this.setState({api: resultado});
 }
@@ -61,7 +55,7 @@ filtrarNombres(){
   });
   console.log(resultado)
     this.setState({api: resultado});
-} 
+}
 
 filtrarApellidos(){
   let apellidos = this.state.value.toLowerCase()
@@ -164,16 +158,14 @@ ordenar(event){
   }
 this.setState({api: ordenar}) 
 }
-
 render(){
 return (
   <React.Fragment>
     <div className="contenedorBotonAdicionar">
       <div className="botonAdicionar">
-
-       <input className="input" type="number" id="idInput" name="cantidad" min="0" max="100" onChange={(event)=> this.setState({ value: event.target.value})}></input>
+       <input className="input" type="number" id="idInput" name="cantidad" min="0" max="100" onChange={(event)=> this.setState({value: event.target.value})}></input>
         <button className="adicionarTarjetas" onClick={this.adicionarTarjetas.bind(this)}>Adicionar contactos</button>
-        
+
         <input className="input" id="idInputNombres" name="cantidad" onChange={(event)=> this.setState({ value: event.target.value})}></input>
         <button className="filtrarNombres" onClick={this.filtrarNombres.bind(this)}>Filtrar por nombre</button>
         
@@ -207,7 +199,6 @@ return (
       }
       </div>
       </React.Fragment>
-      
   )
     }
  }
